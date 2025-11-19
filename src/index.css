@@ -1,2 +1,17 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light --default;
+}
+
+/* text color */
+.primary {
+  @apply text-[#22C55E];
+}
+.secondary {
+  @apply text-[#14532D] font-medium;
+}
+
+/* navbar */
+a.active {
+  @apply bg-[#22C55E] text-white;
+}
