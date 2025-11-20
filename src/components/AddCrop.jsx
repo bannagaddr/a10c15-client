@@ -40,7 +40,7 @@ const AddCrop = () => {
       .catch((err) => setError(err.message));
 
     e.target.reset();
-    navigate("/");
+    navigate("/my-post");
   };
 
   return (

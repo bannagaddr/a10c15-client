@@ -56,7 +56,7 @@ const CropDetails = () => {
 
     const updatedCrop = {
       ...crop,
-      interests: [...crop.interests, interestData],
+      interests: [...(crop.interests || []), interestData],
     };
 
     // client req for update crop by id
@@ -123,7 +123,7 @@ const CropDetails = () => {
           <p className="text-lg font-semibold">Total Price: ${totalPrice}</p>
           <button
             type="submit"
-            className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-colors w-full"
+            className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-colors w-full cursor-pointer"
           >
             Submit Interest
           </button>

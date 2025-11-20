@@ -1,30 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router";
+import { AuthContext } from "../datacontrols/contexts/Context";
 
 const AllCropPost = () => {
-  // this state for useEffect hook
-  const [crops, setCrops] = useState([]);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  // for loading
+  const [crops, setCrops] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:3000/crops")
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         setCrops(data);
         setLoading(false);
       })
       .catch((err) => console.error(err));
   }, []);
 
-  // search filter function
   const filteredCrops = crops.filter((crop) =>
     crop.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handleViewDetails = (id) => {
+    if (!user) {
+      navigate("/login");
+    } else {
+      navigate(`/crops-details/${id}`);
+    }
+  };
 
   if (loading) {
     return (
@@ -69,14 +75,14 @@ const AllCropPost = () => {
                   {crop.name}
                 </h2>
                 <p className="text-sm text-gray-700 mb-2">
-                  Quantity: {crop.quantity} {crop.unit}
+                  Quantity: {crop.quantity} / {crop.unit}
                 </p>
                 <p className="text-sm text-gray-700 mb-3">
                   Price per unit: ${crop.pricePerUnit}
                 </p>
                 <button
                   className="btn btn-success btn-sm w-full shadow-none mb-2"
-                  onClick={() => navigate(`/crops-details/${crop._id}`)}
+                  onClick={() => handleViewDetails(crop._id)}
                 >
                   View Details
                 </button>
