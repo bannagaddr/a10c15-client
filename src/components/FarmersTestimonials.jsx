@@ -6,21 +6,24 @@ const FarmersTestimonials = () => {
     {
       name: "Rafiq",
       location: "Rajshahi",
-      image: "https://i.pravatar.cc/150?img=32",
+      image:
+        "https://images.unsplash.com/photo-1496345875659-11f7dd282d1d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       message:
         "KrishiLink helped me connect with local buyers and sell my crops directly. I saved money and got better prices!",
     },
     {
       name: "Kamal",
       location: "Barishal",
-      image: "https://i.pravatar.cc/150?img=33",
+      image:
+        "https://images.unsplash.com/photo-1548372290-8d01b6c8e78c?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       message:
         "Using KrishiLink, I learned modern farming techniques and improved my crop yield significantly this season.",
     },
     {
       name: "Jahid",
       location: "Dhaka",
-      image: "https://i.pravatar.cc/150?img=34",
+      image:
+        "https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       message:
         "KrishiLink made it easy to find trusted buyers. My profits increased and I could focus more on quality crops.",
     },

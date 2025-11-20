@@ -1,26 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+// swiper's import
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 const HomeSlider = () => {
-  const slides = [
-    { photo: "https://via.placeholder.com/1200x500?text=Slide+1" },
-    { photo: "https://via.placeholder.com/1200x500?text=Slide+2" },
-    { photo: "https://via.placeholder.com/1200x500?text=Slide+3" },
-  ];
+  const [slides, setSlides] = useState([]);
+
+  useEffect(() => {
+    const fetchSlides = async () => {
+      const res = await fetch("http://localhost:3000/crops");
+      const data = await res.json();
+      // console.log(data);
+      const lastThree = data.slice(-3).reverse();
+      setSlides(lastThree);
+    };
+
+    fetchSlides();
+  }, []);
 
   return (
-    <div className="w-11/12 mx-auto my-20 space-y-6">
-      {slides.map((slide, index) => (
-        <div
-          key={index}
-          className="relative w-full h-64 md:h-96 overflow-hidden rounded-2xl shadow bg-[#F0FDF4]"
-        >
-          <img
-            src={slide.photo}
-            alt={`Slide ${index + 1}`}
-            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-          />
-        </div>
-      ))}
+    <div className="w-11/12 mx-auto my-10">
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="rounded-xl shadow mySwiper"
+      >
+        {slides.map((item, index) => (
+          <SwiperSlide key={index}>
+            <div className="w-full h-64 md:h-96 overflow-hidden rounded-xl bg-gray-100">
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };

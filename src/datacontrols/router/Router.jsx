@@ -3,12 +3,15 @@ import { createBrowserRouter } from "react-router";
 import Error from "../error/Error";
 import Layout from "../layout/Layout";
 import Home from "../../components/Home";
-import AllCropPost from "../../components/AddCropPost";
 import AddCrop from "../../components/AddCrop";
 import CropDetails from "../../components/CropDetails";
 import MyPost from "../../components/MyPost";
 import Registration from "../../components/Registration";
 import Login from "../../components/Login";
+import MyProfile from "../../components/MyProfile";
+import AllCropPost from "../../components/AllCropPost";
+import PrivateRouter from "./PrivateRouter";
+import MyInterest from "../../components/MyInterest";
 
 const router = createBrowserRouter([
   {
@@ -28,16 +31,40 @@ const router = createBrowserRouter([
         element: <AllCropPost></AllCropPost>,
       },
       {
+        path: "/my-profile",
+        element: (
+          <PrivateRouter>
+            <MyProfile></MyProfile>
+          </PrivateRouter>
+        ),
+      },
+      {
         path: "/add-crop",
-        element: <AddCrop></AddCrop>,
+        element: (
+          <PrivateRouter>
+            <AddCrop></AddCrop>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/crops-details/:id",
-        element: <CropDetails></CropDetails>,
+        element: (
+          <PrivateRouter>
+            <CropDetails></CropDetails>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/my-post",
         element: <MyPost></MyPost>,
+      },
+      {
+        path: "/my-interests",
+        element: (
+          <PrivateRouter>
+            <MyInterest></MyInterest>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/registration",

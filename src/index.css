@@ -13,5 +13,5 @@
 
 /* navbar */
 a.active {
-  @apply bg-[#22C55E] text-white;
+  @apply bg-[#22C55E] text-white px-2 py-1 rounded-md;
 }

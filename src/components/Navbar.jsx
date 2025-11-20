@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router";
+import "../index.css";
+import { Link, NavLink } from "react-router";
 import { TbLeaf, TbMenu, TbX } from "react-icons/tb";
 import { AuthContext } from "../datacontrols/contexts/Context";
 
@@ -28,13 +29,14 @@ const Navbar = () => {
   // after user validation links
   const commonLinks = [
     { name: "Home", path: "/" },
-    { name: "All Crops", path: "/all-crops" },
+    { name: "All Crops", path: "/all_crop_post" },
   ];
 
+  // when use is logged in
   const privateLinks = [
-    { name: "Profile", path: "/profile" },
-    { name: "Add Crops", path: "/add-crops" },
-    { name: "My Posts", path: "/my-posts" },
+    { name: "Profile", path: "/my-profile" },
+    { name: "Add Crops", path: "/add-crop" },
+    { name: "My Posts", path: "/my-post" },
     { name: "My Interests", path: "/my-interests" },
   ];
 
@@ -59,26 +61,26 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div className="absolute top-full left-0 w-full bg-white shadow-md flex flex-col gap-2 p-4 md:hidden z-50">
           {commonLinks.map((link) => (
-            <Link
+            <NavLink
               key={link.name}
               to={link.path}
               onClick={toggleMobileMenu}
               className="hover:text-green-600"
             >
               {link.name}
-            </Link>
+            </NavLink>
           ))}
 
           {isLoggedIn &&
             privateLinks.map((link) => (
-              <Link
+              <NavLink
                 key={link.name}
                 to={link.path}
                 onClick={toggleMobileMenu}
                 className="hover:text-green-600"
               >
                 {link.name}
-              </Link>
+              </NavLink>
             ))}
 
           {!isLoggedIn ? (
@@ -123,20 +125,24 @@ const Navbar = () => {
 
       <div className="hidden md:flex items-center gap-4">
         {commonLinks.map((link) => (
-          <Link key={link.name} to={link.path} className="hover:text-green-600">
+          <NavLink
+            key={link.name}
+            to={link.path}
+            className="hover:text-green-600"
+          >
             {link.name}
-          </Link>
+          </NavLink>
         ))}
 
         {isLoggedIn
           ? privateLinks.map((link) => (
-              <Link
+              <NavLink
                 key={link.name}
                 to={link.path}
                 className="hover:text-green-600"
               >
                 {link.name}
-              </Link>
+              </NavLink>
             ))
           : null}
 

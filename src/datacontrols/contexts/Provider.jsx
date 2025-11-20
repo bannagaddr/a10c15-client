@@ -67,6 +67,7 @@ const Provider = ({ children }) => {
     logout,
     googleLogin,
     forgetPassword,
+    auth,
   };
 
   return <AuthContext value={authData}>{children}</AuthContext>;

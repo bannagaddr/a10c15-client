@@ -11,13 +11,13 @@ const Registration = () => {
     e.preventDefault();
     setError("");
 
-    // input values get
+    // client input values
     const name = e.target.name.value;
     const email = e.target.email.value;
     const photoURL = e.target.photoURL.value;
     const password = e.target.password.value;
 
-    // password validation
+    // password validation by regex
     const re = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
     if (!re.test(password)) {
       setError(
